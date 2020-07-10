@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 
 module.exports = {
     onPreBuild: async ({ utils }) => {
+        console.log('>> in pre build')
+
         const response = await got('https://api.heroku.com/apps/ilww/config-vars', {
             headers: {
                 "Accept": "application/vnd.heroku+json; version=3",
