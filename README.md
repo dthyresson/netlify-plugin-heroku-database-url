@@ -1,4 +1,4 @@
-# netlify-plugin-heroku-database-url
+# 🔌 netlify-plugin-heroku-database-url
 
 As a best practice, sets the necessary `DATABASE_URL` env to the current value in Heroku config on Netlify build and deploy.
 
@@ -47,12 +47,48 @@ HEROKU_API_TOKEN=
 
 Add a `[[plugins]]` entry to your `netlify.toml` file.
 
-Note since this package is not published, you'll have to use [File based installation](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation) and copy the contents of this repo to the root of your RedwoodJS app project.
+Note since this package is not published, you'll have to use [File based installation](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation) and copy the contents of this repo to the root of your project.
 
 ```
 [[plugins]]
 package = './netlify-plugin-heroku-database-url'
 ```
+
+### Required Settings
+
+You must provide the name of the application -- `app_name` -- to which the Heroku database is attached as a resource.
+
+```
+inputs:
+  - name: app_name
+    description: Name of Heroku application
+    required: true
+  - name: heroku_config
+    description: Config setting key that stores the connection url to the database to use
+    default: DATABASE_URL
+  - name: netlify_env
+    description: Env key to use when setting connection in Netlify
+    default: DATABASE_URL
+```
+
+For example, if both Heroku and Netlify store the database connection string in `DATABASE_URL` mthen you simply need to specify the `app_name`.
+
+```
+  [plugins.inputs]
+  app_name = "my-heroku-app-that-has-db-as-reosource"
+
+```
+
+If for some reason, they do not:
+
+```
+  [plugins.inputs]
+  app_name = "my-heroku-app-that-has-db-as-reosource"
+  heroku_config=HEROKU_POSTGRESQL_PURPLE_URL
+  netlify_env=PROD_DATABASE_URL
+```
+
+However, Heroku will keep the most current value in `DATABASE_URL`.
 
 ## Local Use
 
