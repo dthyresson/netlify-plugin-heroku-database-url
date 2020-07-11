@@ -22,10 +22,10 @@ But, everyone does, right? I do (did?).
 
 When [can](https://devcenter.heroku.com/articles/connecting-to-heroku-postgres-databases-from-outside-of-heroku#credentials) it happen?
 
-* User-initiated database credential rotations using `heroku pg:credentials:rotate`.
-* Catastrophic hardware failures that require Heroku Postgres staff to recover your database on new hardware.
-* Security issues or threats that require Heroku Postgres staff to rotate database credentials.
-* Automated failover events on HA-enabled plans.
+- User-initiated database credential rotations using `heroku pg:credentials:rotate`.
+- Catastrophic hardware failures that require Heroku Postgres staff to recover your database on new hardware.
+- Security issues or threats that require Heroku Postgres staff to rotate database credentials.
+- Automated failover events on HA-enabled plans.
 
 It is best practice to always fetch the database URL config var from the corresponding Heroku app when your application starts ... or in our case, builds and deploys on Netlify.
 
@@ -45,7 +45,7 @@ HEROKU_API_TOKEN=
 
 ## Usage
 
-Add a ``[[plugins]]`` entry to your `netlify.toml` file.
+Add a `[[plugins]]` entry to your `netlify.toml` file.
 
 Note since this package is not published, you'll have to use [File based installation](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation) and copy the contents of this repo to the root of your RedwoodJS app project.
 
@@ -58,7 +58,6 @@ package = './netlify-plugin-heroku-database-url'
 
 You can [run builds in Netlify CLI](https://docs.netlify.com/cli/get-started/#run-builds-locally) to mimic the behavior of running a build on Netlify — including Build Plugins.
 
-
 ### Run Netlify builds locally
 
 You will ned to install the [Netlify CLI](https://docs.netlify.com/cli/get-started/#installation).
@@ -67,7 +66,7 @@ You will ned to install the [Netlify CLI](https://docs.netlify.com/cli/get-start
 # Install Netlify CLI globally
 npm install netlify-cli -g
 
-### OR use Yarn ### 
+### OR use Yarn ###
 yarn global add netlify-cli
 ```
 

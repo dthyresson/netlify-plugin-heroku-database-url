@@ -3,3 +3,5 @@
 
 [[plugins]]
 package = "./src"
+  [plugins.inputs]
+  app_name = "ilww"
