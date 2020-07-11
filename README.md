@@ -90,6 +90,26 @@ If for some reason, they do not:
 
 However, Heroku will keep the most current value in `DATABASE_URL`.
 
+### Netlify Env Configuration
+
+- no need to set or declare
+
+### Use in conjunction with netlify-plugin-redwoodjs-env-validator
+
+However, if using `netlify-plugin-redwoodjs-env-validator` this will expect a `DATABASE_URL` to be defined in Netlify, so provide a dummmy value that will be overridden an build time.
+
+### Use in conjunction with Prisma
+
+If using w/ RedwoodJS and prisma through the [netlify-plugin-prisma-provider](https://github.com/redwoodjs/netlify-plugin-prisma-provider)
+
+### Order matters
+
+```
+When multiple plugins are set to run in the same stage, they will run in the order they are listed in the Netlify configuration file.
+```
+
+List `netlify-plugin-heroku-database-url` before `netlify-plugin-prisma-provider` and `netlify-plugin-redwoodjs-env-validator`.
+
 ## Local Use
 
 You can [run builds in Netlify CLI](https://docs.netlify.com/cli/get-started/#run-builds-locally) to mimic the behavior of running a build on Netlify — including Build Plugins.
