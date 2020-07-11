@@ -33,9 +33,15 @@ const getDatabaseUrl = async ({options}) => {
       }
     ).json()
 
-    return body[options.config]
+    const databaseUrl = body[options.config]
+
+    if (!databaseUrl || databaseUrl.length === 0) {
+      throw new Error(`Missing Heroku config ${options.config}`)
+    }
+
+    return databaseUrl
   } catch (error) {
-    throw new Error(error.response.body)
+    throw new Error((error.response && error.response.body) || error)
   }
 }
 
